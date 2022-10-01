@@ -7,16 +7,24 @@ import HighScores from "pages/HighScores";
 import Game from "pages/Game";
 import GameOver from "pages/GameOver";
 
+import { Container } from "styled/Container";
+import { Main } from "styled/Main";
+
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/highscores" element={<HighScores />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/gameover" element={<GameOver />} />
-      </Routes>
+      <Main>
+        <Container>
+          <Navbar />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/highscores" element={<HighScores />} />
+            <Route path="/game" element={<Game />} />
+            <Route path="/gameover" element={<GameOver />} />
+          </Routes>
+        </Container>
+      </Main>
     </BrowserRouter>
   );
 }
