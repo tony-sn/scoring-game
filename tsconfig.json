@@ -20,7 +20,8 @@
       "app/*": ["src/app/*"],
       "components/*": ["src/components/*"],
       "hooks/*": ["src/hooks/*"],
-      "pages/*": ["src/pages/*"]
+      "pages/*": ["src/pages/*"],
+      "styled/*": ["src/styled/*"]
     }
   },
   "include": ["./src"],
