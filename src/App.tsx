@@ -9,10 +9,12 @@ import GameOver from "pages/GameOver";
 
 import { Container } from "styled/Container";
 import { Main } from "styled/Main";
+import GlobalStyle from "styled/GlobalStyle";
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Main>
         <Container>
           <Navbar />
