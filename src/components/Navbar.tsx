@@ -3,7 +3,7 @@ import {
   StyledNavbar,
   StyledNavBrand,
   StyledNavItem,
-} from "styled/StyledNavbar";
+} from "styled/Navbar";
 import { Accent } from "styled/Random";
 
 export default function Navbar() {
