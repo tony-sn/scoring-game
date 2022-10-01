@@ -1,24 +1,30 @@
-import { Link } from "react-router-dom";
+import {
+  StyledLinkButton,
+  StyledNavbar,
+  StyledNavBrand,
+  StyledNavItem,
+} from "styled/StyledNavbar";
+import { Accent } from "styled/Random";
 
 export default function Navbar() {
   return (
-    <nav>
-      <div>
-        <Link to="/">
-          Learn. Play. <span>Code</span>
-        </Link>
-      </div>
-      <ul>
+    <StyledNavbar>
+      <StyledNavBrand>
+        <StyledLinkButton to="/">
+          Learn. Play. <Accent>Code</Accent>
+        </StyledLinkButton>
+      </StyledNavBrand>
+      <StyledNavItem>
         <li>
-          <Link to="/">Home</Link>
+          <StyledLinkButton to="/">Home</StyledLinkButton>
         </li>
         <li>
-          <Link to="/game">Game</Link>
+          <StyledLinkButton to="/game">Game</StyledLinkButton>
         </li>
         <li>
-          <Link to="/highscores">High Scores</Link>
+          <StyledLinkButton to="/highscores">High Scores</StyledLinkButton>
         </li>
-      </ul>
-    </nav>
+      </StyledNavItem>
+    </StyledNavbar>
   );
 }
