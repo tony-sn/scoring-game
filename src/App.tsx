@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Navbar from "components/Navbar";
 
@@ -12,22 +12,21 @@ import { Main } from "styled/Main";
 import GlobalStyle from "styled/GlobalStyle";
 
 function App() {
+  let navigate = useNavigate();
   return (
-    <BrowserRouter>
+    <Main>
       <GlobalStyle />
-      <Main>
-        <Container>
-          <Navbar />
+      <Container>
+        <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/highscores" element={<HighScores />} />
-            <Route path="/game" element={<Game />} />
-            <Route path="/gameover" element={<GameOver />} />
-          </Routes>
-        </Container>
-      </Main>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/highscores" element={<HighScores />} />
+          <Route path="/game" element={<Game navigate={navigate} />} />
+          <Route path="/gameover" element={<GameOver />} />
+        </Routes>
+      </Container>
+    </Main>
   );
 }
 
