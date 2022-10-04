@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, EventHandler } from "react";
 import { NavigateFunction } from "react-router-dom";
 import {
   StyledCharacter,
@@ -15,10 +15,13 @@ interface NavigationProps {
 export default function Game({ navigate }: NavigationProps): JSX.Element {
   const [score, setScore] = useState(0);
   const MAX_SECONDS = 5;
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const [currentCharacter, setCurrentCharacter] = useState("");
   const [ms, setMs] = useState<number | string>(999);
   const [seconds, setSeconds] = useState<number | string>(MAX_SECONDS);
 
   useEffect(() => {
+    setCurrentCharacter();
     const currentTime = new Date();
     const interval = setInterval(() => {
       updateTime(currentTime);
@@ -56,6 +59,21 @@ export default function Game({ navigate }: NavigationProps): JSX.Element {
       zeros += "0";
     }
     return (zeros + str).slice(-length);
+  };
+
+  const keyUpHandler = (e) => {
+    console.log(e.key);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keyup", keyUpHandler);
+    return () => {
+      document.removeEventListener("keyup", keyUpHandler);
+    };
+  }, []);
+
+  const setRandomCharacter = () => {
+    const randomInt = Math.floor(Math.random * 36);
   };
 
   return (
