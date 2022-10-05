@@ -24,7 +24,7 @@ export const StyledNavItem = styled.ul`
   align-items: center;
 `;
 
-export const StyledLinkButton = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1.2rem;
   transition: color 200ms;

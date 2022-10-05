@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/highscores" element={<HighScores />} />
           <Route path="/game" element={<Game navigate={navigate} />} />
-          <Route path="/gameover" element={<GameOver />} />
+          <Route path="/gameover" element={<GameOver navigate={navigate} />} />
         </Routes>
       </Container>
     </Main>

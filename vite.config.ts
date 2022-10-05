@@ -12,7 +12,9 @@ export default defineConfig({
     alias: {
       app: resolve(__dirname, "src", "app"),
       components: resolve(__dirname, "src", "components"),
+      contexts: resolve(__dirname, "src", "contexts"),
       hooks: resolve(__dirname, "src", "hooks"),
+      interfaces: resolve(__dirname, "src", "interfaces"),
       pages: resolve(__dirname, "src", "pages"),
       styled: resolve(__dirname, "src", "styled"),
     },

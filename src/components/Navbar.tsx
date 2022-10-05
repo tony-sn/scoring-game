@@ -1,5 +1,5 @@
 import {
-  StyledLinkButton,
+  StyledLink,
   StyledNavbar,
   StyledNavBrand,
   StyledNavItem,
@@ -10,19 +10,19 @@ export default function Navbar() {
   return (
     <StyledNavbar>
       <StyledNavBrand>
-        <StyledLinkButton to="/">
+        <StyledLink to="/">
           Learn. Play. <Accent>Code</Accent>
-        </StyledLinkButton>
+        </StyledLink>
       </StyledNavBrand>
       <StyledNavItem>
         <li>
-          <StyledLinkButton to="/">Home</StyledLinkButton>
+          <StyledLink to="/">Home</StyledLink>
         </li>
         <li>
-          <StyledLinkButton to="/game">Game</StyledLinkButton>
+          <StyledLink to="/game">Game</StyledLink>
         </li>
         <li>
-          <StyledLinkButton to="/highscores">High Scores</StyledLinkButton>
+          <StyledLink to="/highscores">High Scores</StyledLink>
         </li>
       </StyledNavItem>
     </StyledNavbar>
