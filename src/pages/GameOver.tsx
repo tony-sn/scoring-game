@@ -4,9 +4,7 @@ import { StyledLink } from "styled/Navbar";
 import { NavigationProps } from "interfaces/index";
 
 export default function GameOver({ navigate }: NavigationProps): JSX.Element {
-  const [score, setScore] = useScore();
-
-  console.log(score);
+  const [score] = useScore();
 
   if (score === -1) navigate("/");
 
