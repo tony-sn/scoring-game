@@ -7,9 +7,10 @@ import {
 } from "styled/Game";
 import { Strong } from "styled/Random";
 import { NavigationProps } from "src/interfaces";
+import { useScore } from "contexts/ScoreContext";
 
 export default function Game({ navigate }: NavigationProps): JSX.Element {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useScore();
   const MAX_SECONDS = 5;
   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
   const [currentCharacter, setCurrentCharacter] = useState("a");
@@ -66,10 +67,10 @@ export default function Game({ navigate }: NavigationProps): JSX.Element {
   const keyUpHandler = useCallback(
     (e: { key: string }) => {
       if (e.key === currentCharacter) {
-        setScore((prevScore) => prevScore + 1);
+        setScore((prevScore: number) => prevScore + 1);
       } else {
         if (score > 0) {
-          setScore((prevScore) => prevScore - 1);
+          setScore((prevScore: number) => prevScore - 1);
         }
       }
 
