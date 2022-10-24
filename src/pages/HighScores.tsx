@@ -1,4 +1,4 @@
-export default function HighScores() {
+export default function HighScores(): JSX.Element {
   return (
     <div>
       <h1>Highscores</h1>
