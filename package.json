@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "pq": "yarn pretty-quick",
+    "format": "yarn pretty-quick",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky install"
