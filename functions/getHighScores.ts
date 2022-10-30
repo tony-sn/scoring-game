@@ -2,9 +2,9 @@ import { Handler } from "@netlify/functions";
 
 const Airtable = require("airtable");
 const base = new Airtable({
-  apiKey: import.meta.env.VITE_AIRTABLE_API_KEY,
-}).base(import.meta.env.VITE_AIRTABLE_BASE);
-const table = base(import.meta.env.VITE_AIRTABLE_TABLE);
+  apiKey: process.env.VITE_AIRTABLE_API_KEY,
+}).base(process.env.VITE_AIRTABLE_BASE);
+const table = base(process.env.VITE_AIRTABLE_TABLE);
 
 interface Record {
   id: string;
@@ -14,10 +14,10 @@ interface Record {
   };
 }
 
-const handler: Handler = async (event) => {
+const handler: Handler = async (_event) => {
   try {
     const records = await table.select().firstPage();
-    const formattedRecords = records.map((record: Record) => ({
+    const formattedRecords = records.map((record: Partial<Record>) => ({
       id: record.id,
       fields: record.fields,
     }));
