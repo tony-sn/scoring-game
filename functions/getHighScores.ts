@@ -4,19 +4,25 @@ const Airtable = require("airtable");
 const base = new Airtable({
   apiKey: process.env.VITE_AIRTABLE_API_KEY,
 }).base(process.env.VITE_AIRTABLE_BASE);
+
 const table = base(process.env.VITE_AIRTABLE_TABLE);
 
 interface Record {
   id: string;
   fields: {
     name: string;
-    number: string;
+    score: string;
   };
 }
 
 const handler: Handler = async (_event) => {
   try {
-    const records = await table.select().firstPage();
+    const records = await table
+      .select({
+        sort: [{ field: "score", direction: "desc" }],
+        filterByFormula: `AND(name != "", score > 0)`,
+      })
+      .firstPage();
     const formattedRecords = records.map((record: Partial<Record>) => ({
       id: record.id,
       fields: record.fields,
