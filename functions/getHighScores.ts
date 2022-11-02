@@ -1,12 +1,5 @@
 import { Handler } from "@netlify/functions";
 
-const Airtable = require("airtable");
-const base = new Airtable({
-  apiKey: process.env.VITE_AIRTABLE_API_KEY,
-}).base(process.env.VITE_AIRTABLE_BASE);
-
-const table = base(process.env.VITE_AIRTABLE_TABLE);
-
 interface Record {
   id: string;
   fields: {
@@ -14,6 +7,13 @@ interface Record {
     score: string;
   };
 }
+
+const Airtable = require("airtable");
+const base = new Airtable({
+  apiKey: process.env.VITE_AIRTABLE_API_KEY,
+}).base(process.env.VITE_AIRTABLE_BASE);
+
+const table = base(process.env.VITE_AIRTABLE_TABLE);
 
 const handler: Handler = async (_event) => {
   try {

@@ -2,3 +2,11 @@
   publish = "/dist"
   command = "yarn run build"
   functions = "/functions"
+
+[dev]
+  command = "yarn run dev"
+  port = 8888
+  targetPort = 3000
+  functionsPort = 18694
+  autoLaunch = true
+
