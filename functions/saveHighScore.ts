@@ -1,20 +1,5 @@
 import { Handler } from "@netlify/functions";
-
-const Airtable = require("airtable");
-
-Airtable.configure({
-  apiKey: process.env.VITE_AIRTABLE_API_KEY,
-});
-const base = Airtable.base(process.env.VITE_AIRTABLE_BASE);
-const table = base.table(process.env.VITE_AIRTABLE_TABLE);
-
-interface Record {
-  id: string;
-  fields: {
-    name: string;
-    score: string;
-  };
-}
+import { table, getHighScores } from "./utils/airtable";
 
 const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -26,25 +11,17 @@ const handler: Handler = async (event) => {
   const { score, name } = JSON.parse(event.body!);
   if (typeof score === "undefined" || !name) {
     return {
-      statusCode: 405,
+      statusCode: 400,
       body: JSON.stringify({ err: "Bad request" }),
     };
   }
 
   try {
-    const records = await table
-      .select({
-        sort: [{ field: "score", direction: "desc" }],
-      })
-      .firstPage();
-    const formattedRecords = records.map((record: Partial<Record>) => ({
-      id: record.id,
-      fields: record.fields,
-    }));
+    const records = await getHighScores(false);
 
-    const lowestRecord = formattedRecords[9];
+    const lowestRecord = records[9]; // only show top 10
     if (
-      typeof lowestRecord.fields.score === "undefined" ||
+      typeof lowestRecord.fields?.score === "undefined" ||
       score > lowestRecord.fields.score
     ) {
       //update this record with the incoming score
