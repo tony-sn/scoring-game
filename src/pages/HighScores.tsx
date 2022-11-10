@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Record } from "interfaces/index";
 import { ScoreLI, ScoresList } from "styled/ScoresList";
+import { StyledTitle } from "styled/Random";
 
 export default function HighScores(): JSX.Element {
   const [highScores, setHighScores] = useState<Record[]>([]);
@@ -20,11 +21,12 @@ export default function HighScores(): JSX.Element {
   }, []);
   return (
     <div>
-      <h1>Highscores</h1>
+      <StyledTitle>High Scores</StyledTitle>
+
       <ScoresList>
-        {highScores.map((score) => (
+        {highScores.map((score, index) => (
           <ScoreLI key={score.id}>
-            {score.fields.name} - {score.fields.score}
+            {index + 1}. {score.fields.name} - {score.fields.score}
           </ScoreLI>
         ))}
       </ScoresList>

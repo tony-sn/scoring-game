@@ -2,7 +2,7 @@ import {
   StyledLink,
   StyledNavbar,
   StyledNavBrand,
-  StyledNavItem,
+  StyledNavItems,
 } from "styled/Navbar";
 import { Accent } from "styled/Random";
 
@@ -14,7 +14,7 @@ export default function Navbar() {
           Learn. Play. <Accent>Code</Accent>
         </StyledLink>
       </StyledNavBrand>
-      <StyledNavItem>
+      <StyledNavItems>
         <li>
           <StyledLink to="/">Home</StyledLink>
         </li>
@@ -24,7 +24,7 @@ export default function Navbar() {
         <li>
           <StyledLink to="/highscores">High Scores</StyledLink>
         </li>
-      </StyledNavItem>
+      </StyledNavItems>
     </StyledNavbar>
   );
 }

@@ -15,12 +15,12 @@ export const StyledNavBrand = styled.div`
   }
 `;
 
-export const StyledNavItem = styled.ul`
+export const StyledNavItems = styled.ul`
   list-style: none;
   padding-left: 0;
   display: grid;
-  grid-auto-flow: column;
   grid-gap: 20px;
+  grid-auto-flow: column;
   align-items: center;
 `;
 
