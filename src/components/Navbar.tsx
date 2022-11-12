@@ -5,8 +5,11 @@ import {
   StyledNavItems,
 } from "styled/Navbar";
 import { Accent } from "styled/Random";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <StyledNavbar>
       <StyledNavBrand>
@@ -23,6 +26,10 @@ export default function Navbar() {
         </li>
         <li>
           <StyledLink to="/highscores">High Scores</StyledLink>
+        </li>
+
+        <li>
+          <button onClick={() => loginWithRedirect()}>Login</button>
         </li>
       </StyledNavItems>
     </StyledNavbar>
