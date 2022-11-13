@@ -1,4 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Navbar from "components/Navbar";
 
@@ -13,6 +14,12 @@ import GlobalStyle from "styled/GlobalStyle";
 
 function App() {
   let navigate = useNavigate();
+
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <Main>
       <GlobalStyle />
