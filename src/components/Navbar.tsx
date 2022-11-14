@@ -8,7 +8,7 @@ import { Accent } from "styled/Random";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
     <StyledNavbar>
@@ -29,17 +29,20 @@ export default function Navbar() {
         </li>
 
         {isAuthenticated && (
-          <li>
-            <button
-              onClick={() =>
-                logout({
-                  returnTo: window.location.origin,
-                })
-              }
-            >
-              Log Out
-            </button>
-          </li>
+          <>
+            <li>{user?.nickname}</li>
+            <li>
+              <button
+                onClick={() =>
+                  logout({
+                    returnTo: window.location.origin,
+                  })
+                }
+              >
+                Log Out
+              </button>
+            </li>
+          </>
         )}
         {!isAuthenticated && (
           <li>

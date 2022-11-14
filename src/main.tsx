@@ -6,14 +6,17 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./App";
 import "./index.css";
 
+import config from "./config.json";
+
 import { ScoreProvider } from "contexts/ScoreContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-4qtpar7jgfmybofo.us.auth0.com"
-      clientId="7FvWD1luTjixDQ1nssPg6DefjLPLK811"
+      domain={config.domain}
+      clientId={config.clientId}
       redirectUri={window.location.origin}
+      audience={config.audience}
     >
       <ScoreProvider>
         <Router>
