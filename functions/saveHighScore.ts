@@ -2,6 +2,8 @@ import { Handler } from "@netlify/functions";
 import { table, getHighScores } from "./utils/airtable";
 
 const handler: Handler = async (event) => {
+  console.log("%c  Log: ", "color: ; font-weight: 600", event.headers);
+
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
