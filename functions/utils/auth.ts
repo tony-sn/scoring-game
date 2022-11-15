@@ -1,8 +1,9 @@
 interface EventHeaders {
-  authorization: string | undefined;
+  [name: string]: string | undefined;
+  authorization: string;
 }
 
-const getAccessTokenFromHeaders = (headers: EventHeaders) => {
+export const getAccessTokenFromHeaders = (headers: Partial<EventHeaders>) => {
   const rawAuthorization = headers.authorization;
   if (!rawAuthorization) {
     return null;

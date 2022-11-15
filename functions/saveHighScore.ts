@@ -1,8 +1,16 @@
 import { Handler } from "@netlify/functions";
 import { table, getHighScores } from "./utils/airtable";
+import { getAccessTokenFromHeaders } from "./utils/auth";
 
 const handler: Handler = async (event) => {
-  console.log("%c  Log: ", "color: ; font-weight: 600", event.headers);
+  const token = getAccessTokenFromHeaders(event.headers);
+
+  if (!token) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ err: "Unauthorized user. Please login" }),
+    };
+  }
 
   if (event.httpMethod !== "POST") {
     return {
