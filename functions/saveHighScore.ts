@@ -1,13 +1,15 @@
 import { Handler } from "@netlify/functions";
 import { table, getHighScores } from "./utils/airtable";
-import { getAccessTokenFromHeaders } from "./utils/auth";
+
+import { getAccessTokenFromHeaders, validateAccessToken } from "./utils/auth";
 
 const handler: Handler = async (event) => {
   const token = getAccessTokenFromHeaders(event.headers);
+  const users = await validateAccessToken(token);
 
-  if (!token) {
+  if (!users) {
     return {
-      statusCode: 401,
+      statusCode: 403,
       body: JSON.stringify({ err: "Unauthorized user. Please login" }),
     };
   }

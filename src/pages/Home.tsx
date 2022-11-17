@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home(): JSX.Element {
   const { user } = useAuth0();
-  if (typeof user !== "undefined") console.log(user);
+  if (typeof user !== "undefined") console.log("user log: ", { user });
 
   return (
     <div>
