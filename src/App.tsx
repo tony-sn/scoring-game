@@ -18,22 +18,38 @@ function App() {
   const { isLoading } = useAuth0();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <GlobalStyle />
+
+        <Main>
+          <p>Loading...</p>;
+        </Main>
+      </>
+    );
   }
   return (
-    <Main>
+    <>
       <GlobalStyle />
-      <Container>
-        <Navbar />
+      <Main>
+        {isLoading && <p>Loading...</p>}
+        {!isLoading && (
+          <Container>
+            <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/highscores" element={<HighScores />} />
-          <Route path="/game" element={<Game navigate={navigate} />} />
-          <Route path="/gameover" element={<GameOver navigate={navigate} />} />
-        </Routes>
-      </Container>
-    </Main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/highscores" element={<HighScores />} />
+              <Route path="/game" element={<Game navigate={navigate} />} />
+              <Route
+                path="/gameover"
+                element={<GameOver navigate={navigate} />}
+              />
+            </Routes>
+          </Container>
+        )}
+      </Main>
+    </>
   );
 }
 
