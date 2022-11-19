@@ -1,12 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import { Theme } from "interfaces/index";
 
-const isDarkTheme = false;
+interface ThemeProps {
+  theme: Theme;
+}
 
 export default createGlobalStyle`
+
 :root {
-  --main-bg-color: ${isDarkTheme ? "#333" : "#f9f9f9"};
-  --main-text-color: ${isDarkTheme ? "#f9f9f9" : "#333"};
-  --accent-color: #e16365;
+  --main-bg-color: ${(props: ThemeProps) => props.theme.mainBgColor};
+  --main-text-color: ${(props: ThemeProps) => props.theme.mainTextColor};
+  --accent-color: ${(props: ThemeProps) => props.theme.accent};
 }
 
   *{
@@ -19,6 +23,5 @@ export default createGlobalStyle`
 
   h1, h2{
     margin-bottom: 2rem;
-    
   }
 `;
