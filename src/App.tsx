@@ -1,25 +1,27 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ThemeProvider } from "styled-components";
-import { LightTheme, DarkTheme } from "styled/Themes";
 
 import Navbar from "components/Navbar";
 
-import Home from "pages/Home";
-import HighScores from "pages/HighScores";
+import { useTheme } from "hooks/useTheme";
+
 import Game from "pages/Game";
 import GameOver from "pages/GameOver";
+import HighScores from "pages/HighScores";
+import Home from "pages/Home";
 
 import { Container } from "styled/Container";
-import { Main } from "styled/Main";
 import GlobalStyle from "styled/GlobalStyle";
+import { Main } from "styled/Main";
+import { LightTheme, DarkTheme } from "styled/Themes";
 
 function App() {
   let navigate = useNavigate();
+  const [theme, toggleTheme] = useTheme();
 
   const { isLoading } = useAuth0();
 
-  const theme = "light";
   const currentTheme = theme === "light" ? LightTheme : DarkTheme;
 
   return (
@@ -29,7 +31,7 @@ function App() {
         {isLoading && <p>Loading...</p>}
         {!isLoading && (
           <Container>
-            <Navbar />
+            <Navbar toggleTheme={toggleTheme} />
 
             <Routes>
               <Route path="/" element={<Home />} />

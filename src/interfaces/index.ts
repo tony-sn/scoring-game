@@ -24,4 +24,8 @@ export interface Theme {
   accent?: string;
 }
 
+export interface ToggleFunction<HTMLButtonElement> {
+  toggleTheme: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 export type TODO_TYPEME = any;
