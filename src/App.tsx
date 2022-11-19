@@ -1,5 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ThemeProvider } from "styled-components";
+import { LightTheme, DarkTheme } from "styled/Themes";
 
 import Navbar from "components/Navbar";
 
@@ -17,19 +19,11 @@ function App() {
 
   const { isLoading } = useAuth0();
 
-  if (isLoading) {
-    return (
-      <>
-        <GlobalStyle />
+  const theme = "light";
+  const currentTheme = theme === "light" ? LightTheme : DarkTheme;
 
-        <Main>
-          <p>Loading...</p>;
-        </Main>
-      </>
-    );
-  }
   return (
-    <>
+    <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
       <Main>
         {isLoading && <p>Loading...</p>}
@@ -49,7 +43,7 @@ function App() {
           </Container>
         )}
       </Main>
-    </>
+    </ThemeProvider>
   );
 }
 

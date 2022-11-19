@@ -15,4 +15,13 @@ export interface Record extends Fields<string> {
   id: string;
 }
 
+export interface Theme {
+  mainBgColor: string;
+  mainTextColor: string;
+  sharedStyles?: {
+    [key: string]: string;
+  };
+  accent?: string;
+}
+
 export type TODO_TYPEME = any;
