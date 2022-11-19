@@ -3,9 +3,10 @@ interface EventHeaders {
   authorization: string;
 }
 
+import * as jwt from "jsonwebtoken";
+
 import { promisify } from "util";
 
-const jwt = require("jsonwebtoken");
 const jwks = require("jwks-rsa");
 const jwksClient = jwks({
   jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
@@ -26,7 +27,7 @@ const getAccessTokenFromHeaders = (headers: Partial<EventHeaders>) => {
   return accessToken;
 };
 
-const validateAccessToken = async (token) => {
+const validateAccessToken = async (token: string) => {
   try {
     const decodedToken = jwt.decode(token, { complete: true });
     console.log(
@@ -35,16 +36,16 @@ const validateAccessToken = async (token) => {
       decodedToken
     );
 
-    const kid = decodedToken.header.kid;
-    const alg = decodedToken.header.alg;
+    const kid = decodedToken?.header.kid;
+    const alg = decodedToken?.header.alg;
 
     const getSigningKey = promisify(jwksClient.getSigningKey);
     const key = await getSigningKey(kid);
     const signingKey = key.publicKey;
 
-    const options = { algorithms: alg };
+    const options: {} = { algorithms: alg };
     jwt.verify(token, signingKey, options);
-    return decodedToken.payload;
+    return decodedToken?.payload;
   } catch (error) {
     console.error(error);
     return null;

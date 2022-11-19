@@ -1,5 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { ToggleFunction } from "interfaces/index";
+
 import {
   StyledLink,
   StyledNavbar,
@@ -7,8 +9,6 @@ import {
   StyledNavItems,
 } from "styled/Navbar";
 import { Accent } from "styled/Random";
-
-import { ToggleFunction } from "interfaces/index";
 
 export default function Navbar({
   toggleTheme,

@@ -6,7 +6,7 @@ import { getAccessTokenFromHeaders, validateAccessToken } from "./utils/auth";
 const handler: Handler = async (event) => {
   const token = getAccessTokenFromHeaders(event.headers);
   console.log({ token });
-  const users = await validateAccessToken(token);
+  const users = await validateAccessToken(token as string);
   console.log({ users });
 
   if (!users) {
