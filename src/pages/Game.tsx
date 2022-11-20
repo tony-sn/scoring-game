@@ -1,4 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
+
+import { NavigationProps } from "src/interfaces";
+import { useScore } from "contexts/ScoreContext";
+
 import {
   StyledCharacter,
   StyledGame,
@@ -6,8 +10,23 @@ import {
   StyledTimer,
 } from "styled/Game";
 import { Strong } from "styled/Random";
-import { NavigationProps } from "src/interfaces";
-import { useScore } from "contexts/ScoreContext";
+
+// TODO: Need new logic for this page:
+/*
+PSEUDO:
+
+INPUT: User inputs a bunch of code: JS for example
+
+PROCESS:
+- Step 1: Learn about CodeRacer or monkeytype algorithm, read the codebase if they have on GitHub
+- Step 2: Change characters to code block const
+- Step 3: check currentCharacter based on the whole word
+- Step 4: No longer minus point if user enter wrong, user get a point for each word correct
+- Step 5: setScore change from character to full word count
+- Step 6: Change second from 5s to 30s | 60s...
+
+OUTPUT: Total score after finish typing the code block show on screen
+*/
 
 export default function Game({ navigate }: NavigationProps): JSX.Element {
   const [score, setScore] = useScore();
@@ -65,8 +84,8 @@ export default function Game({ navigate }: NavigationProps): JSX.Element {
   };
 
   const keyUpHandler = useCallback(
-    (e: { key: string }) => {
-      if (e.key === currentCharacter) {
+    (ev: KeyboardEvent) => {
+      if (ev.key === currentCharacter) {
         setScore((prevScore: number) => prevScore + 1);
       } else {
         if (score > 0) {
