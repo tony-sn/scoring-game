@@ -10,3 +10,7 @@
   functionsPort = 18694
   autoLaunch = true
 
+[[redirects]] 
+  from = "/*" 
+  to = "/index.html" 
+  status = 200

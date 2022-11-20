@@ -30,11 +30,6 @@ const getAccessTokenFromHeaders = (headers: Partial<EventHeaders>) => {
 const validateAccessToken = async (token: string) => {
   try {
     const decodedToken = jwt.decode(token, { complete: true });
-    console.log(
-      "%c decoded token Log: ",
-      "color: lightGreen; font-weight: 600",
-      decodedToken
-    );
 
     const kid = decodedToken?.header.kid;
     const alg = decodedToken?.header.alg;

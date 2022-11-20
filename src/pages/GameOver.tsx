@@ -10,7 +10,8 @@ import { NavigationProps, Record } from "interfaces/index";
 export default function GameOver({ navigate }: NavigationProps): JSX.Element {
   const [score] = useScore();
   const [scoreMessage, setScoreMessage] = useState("");
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
+  console.log(user);
 
   useEffect(() => {
     if (score === -1) navigate("/"); // if not play, return to home page
@@ -25,7 +26,7 @@ export default function GameOver({ navigate }: NavigationProps): JSX.Element {
         const options = {
           method: "POST",
           // NOTE: ES6 shorthand
-          body: JSON.stringify({ name: "James", score }),
+          body: JSON.stringify({ name: user?.nickname, score }),
           headers: {
             Authorization: `Bearer ${token}`,
           },
