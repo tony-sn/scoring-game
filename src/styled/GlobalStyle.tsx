@@ -11,6 +11,7 @@ export default createGlobalStyle`
   --main-bg-color: ${(props: ThemeProps) => props.theme.mainBgColor};
   --main-text-color: ${(props: ThemeProps) => props.theme.mainTextColor};
   --accent-color: ${(props: ThemeProps) => props.theme.accent};
+  --button-border-color: ${(props: ThemeProps) => props.theme.mainTextColor};
 }
 
   *{

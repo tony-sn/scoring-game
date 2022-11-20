@@ -9,7 +9,8 @@ export const StyledNavbar = styled.nav`
 
 export const StyledNavBrand = styled.div`
   font-size: 1.4rem;
-
+  text-align: left;
+  padding-top: 4px; // amend based on toggle icon
   & > a {
     text-decoration: none;
   }
@@ -29,6 +30,16 @@ export const StyledLink = styled(Link)`
   font-size: 1.2rem;
   transition: color 200ms;
 
+  &:hover {
+    color: var(--accent-color);
+  }
+`;
+
+export const StyledButtonLink = styled.button`
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: none;
   &:hover {
     color: var(--accent-color);
   }

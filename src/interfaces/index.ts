@@ -24,7 +24,8 @@ export interface Theme {
   accent?: string;
 }
 
-export interface ToggleFunction<HTMLButtonElement> {
+export interface NavbarProps<HTMLButtonElement> {
+  theme: string;
   toggleTheme: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 

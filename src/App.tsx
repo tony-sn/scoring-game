@@ -15,6 +15,7 @@ import { Container } from "styled/Container";
 import GlobalStyle from "styled/GlobalStyle";
 import { Main } from "styled/Main";
 import { LightTheme, DarkTheme } from "styled/Themes";
+import { LoaderSpinner } from "styled/LoaderSpinner";
 
 function App() {
   let navigate = useNavigate();
@@ -28,10 +29,10 @@ function App() {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
       <Main>
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <LoaderSpinner />}
         {!isLoading && (
           <Container>
-            <Navbar toggleTheme={toggleTheme} />
+            <Navbar toggleTheme={toggleTheme} theme={theme} />
 
             <Routes>
               <Route path="/" element={<Home />} />

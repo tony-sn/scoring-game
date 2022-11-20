@@ -1,20 +1,23 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
-import { ToggleFunction } from "interfaces/index";
+import { NavbarProps } from "interfaces/index";
 
+import { StyledButton } from "styled/Button";
 import {
   StyledLink,
   StyledNavbar,
   StyledNavBrand,
   StyledNavItems,
+  StyledButtonLink,
 } from "styled/Navbar";
 import { Accent } from "styled/Random";
 
 export default function Navbar({
   toggleTheme,
-}: ToggleFunction<HTMLButtonElement>) {
+  theme,
+}: NavbarProps<HTMLButtonElement>) {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  console.log(typeof toggleTheme);
 
   return (
     <StyledNavbar>
@@ -28,17 +31,17 @@ export default function Navbar({
           <StyledLink to="/">Home</StyledLink>
         </li>
         <li>
-          <StyledLink to="/game">Game</StyledLink>
+          <StyledLink to="/highscores">High Scores</StyledLink>
         </li>
         <li>
-          <StyledLink to="/highscores">High Scores</StyledLink>
+          <StyledLink to="/game">Game</StyledLink>
         </li>
 
         {isAuthenticated && (
           <>
             <li>{user?.nickname}</li>
             <li>
-              <button
+              <StyledButtonLink
                 onClick={() =>
                   logout({
                     returnTo: window.location.origin,
@@ -46,7 +49,7 @@ export default function Navbar({
                 }
               >
                 Log Out
-              </button>
+              </StyledButtonLink>
             </li>
           </>
         )}
@@ -56,7 +59,9 @@ export default function Navbar({
           </li>
         )}
         <li>
-          <button onClick={toggleTheme}>Theme</button>
+          <StyledButton onClick={toggleTheme}>
+            {theme === "dark" ? <FaMoon /> : <FaSun />}
+          </StyledButton>
         </li>
       </StyledNavItems>
     </StyledNavbar>
